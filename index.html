@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+<meta name="theme-color" content="#071a35">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<title>MY LIC DOC — Version 1.8 Professional</title>
+
+<style>
+*{box-sizing:border-box}
+:root{
+ --navy:#071a35;
+ --navy2:#0d2b52;
+ --gold:#d9a441;
+ --gold2:#f5d47a;
+ --bg:#f4f6fa;
+ --card:#fff;
+ --text:#172033;
+ --muted:#697386;
+ --line:#e5e9f1;
+ --green:#128c55;
+ --red:#d63b4a;
+ --blue:#2563eb;
+ --shadow:0 8px 25px rgba(7,26,53,.08);
+}
+body{
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh}
+
+/* HEADER */
+.header{
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:rgba(255,255,255,.97);
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--line);
+ padding:11px 14px;
+}
+.headrow{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+}
+.brand{
+ display:flex;
+ align-items:center;
+ gap:10px;
+}
+.logo{
+ width:44px;height:44px;
+ border-radius:14px;
+ background:linear-gradient(135deg,var(--navy),var(--navy2));
+ color:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-weight:900;
+ box-shadow:0 5px 15px rgba(7,26,53,.2);
+}
+.brand h1{
+ font-size:17px;
+ margin:0;
+ color:var(--navy);
+}
+.brand small{
+ color:var(--muted);
+ font-size:11px;
+}
+.iconbtn{
+ border:1px solid var(--line);
+ background:#fff;
+ width:40px;height:40px;
+ border-radius:12px;
+ font-size:20px;
+}
+
+/* NAV */
+.menu{
+ display:flex;
+ gap:8px;
+ overflow-x:auto;
+ padding:10px 14px;
+ background:#fff;
+ border-bottom:1px solid var(--line);
+ scrollbar-width:none;
+}
+.menu::-webkit-scrollbar{display:none}
+.menu button{
+ white-space:nowrap;
+ border:1px solid var(--line);
+ background:#fff;
+ color:#26334a;
+ padding:9px 12px;
+ border-radius:12px;
+ font-size:12px;
+ font-weight:700;
+}
+.menu button.active{
+ background:var(--navy);
+ color:#fff;
+ border-color:var(--navy);
+}
+
+/* MAIN */
+main{
+ max-width:1100px;
+ margin:auto;
+ padding:14px;
+ padding-bottom:90px;
+}
+.page{display:none}
+.page.active{display:block}
+.title{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:14px;
+}
+.title h2{
+ margin:0;
+ font-size:20px;
+ color:var(--navy);
+}
+.subtitle{
+ color:var(--muted);
+ font-size:12px;
+ margin-top:4px;
+}
+
+/* CARDS */
+.card{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:18px;
+ padding:15px;
+ box-shadow:var(--shadow);
+ margin-bottom:14px;
+}
+.card h3{
+ margin:0 0 12px;
+ font-size:15px;
+}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+.stat{
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:14px;
+ box-shadow:var(--shadow);
+}
+.stat .ico{font-size:22px}
+.stat b{
+ display:block;
+ font-size:23px;
+ margin-top:6px;
+ color:var(--navy);
+}
+.stat span{
+ font-size:11px;
+ color:var(--muted);
+}
+
+/* GRID */
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+.formgrid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+.full{grid-column:1/-1}
+
+/* FORMS */
+label{
+ display:block;
+ font-size:11px;
+ color:var(--muted);
+ font-weight:700;
+ margin-bottom:5px;
+}
+input,select,textarea{
+ width:100%;
+ border:1px solid #dfe4ec;
+ border-radius:11px;
+ padding:11px;
+ outline:none;
+ background:#fff;
+ color:var(--text);
+}
+input:focus,select:focus,textarea:focus{
+ border-color:var(--blue);
+ box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+textarea{min-height:90px;resize:vertical}
+
+/* BUTTONS */
+.btn{
+ border:0;
+ border-radius:11px;
+ padding:11px 14px;
+ font-weight:800;
+ font-size:12px;
+}
+.primary{background:var(--navy);color:#fff}
+.gold{background:var(--gold);color:#fff}
+.green{background:var(--green);color:#fff}
+.blue{background:var(--blue);color:#fff}
+.red{background:var(--red);color:#fff}
+.light{
+ background:#f0f3f8;
+ color:#24324a;
+}
+.btnrow{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:12px;
+}
+
+/* PLAN CARDS */
+.plan-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+.plan{
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:13px;
+ background:#fff;
+ box-shadow:var(--shadow);
+}
+.plan .pno{
+ display:inline-block;
+ background:#eef3fb;
+ color:var(--navy);
+ border-radius:8px;
+ padding:4px 7px;
+ font-size:10px;
+ font-weight:800;
+}
+.plan h3{margin:9px 0 5px;font-size:14px}
+.plan p{margin:0;color:var(--muted);font-size:11px}
+
+/* TABLE */
+.tablewrap{
+ overflow:auto;
+ border:1px solid var(--line);
+ border-radius:13px;
+}
+table{
+ width:100%;
+ border-collapse:collapse;
+ min-width:700px;
+ background:#fff;
+}
+th,td{
+ padding:10px;
+ border-bottom:1px solid var(--line);
+ text-align:left;
+ font-size:11px;
+}
+th{
+ background:#f5f7fb;
+ color:var(--navy);
+}
+.badge{
+ display:inline-block;
+ padding:4px 7px;
+ border-radius:20px;
+ font-size:10px;
+ font-weight:800;
+}
+.badge.green{background:#e7f7ef;color:#087444}
+.badge.red{background:#fdecef;color:#b72232}
+.badge.blue{background:#eaf1ff;color:#1d55c7}
+.badge.gold{background:#fff5d9;color:#986b00}
+
+/* SEARCH */
+.search{
+ position:relative;
+ margin-bottom:12px;
+}
+.search input{padding-left:38px}
+.search span{
+ position:absolute;
+ left:13px;
+ top:10px;
+}
+
+/* MODAL */
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.5);
+ z-index:500;
+ display:none;
+ align-items:flex-end;
+ justify-content:center;
+}
+.modal.show{display:flex}
+.modalbox{
+ width:100%;
+ max-width:700px;
+ max-height:92vh;
+ overflow:auto;
+ background:#fff;
+ border-radius:22px 22px 0 0;
+ padding:17px;
+}
+.modalhead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:14px;
+}
+.modalhead h3{margin:0}
+
+/* TOAST */
+#toast{
+ position:fixed;
+ left:50%;
+ bottom:22px;
+ transform:translateX(-50%) translateY(20px);
+ background:#071a35;
+ color:#fff;
+ padding:12px 18px;
+ border-radius:12px;
+ font-size:12px;
+ opacity:0;
+ pointer-events:none;
+ transition:.3s;
+ z-index:999;
+}
+#toast.show{
+ opacity:1;
+ transform:translateX(-50%) translateY(0);
+}
+
+/* BOTTOM */
+.bottom{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ z-index:90;
+ background:#fff;
+ border-top:1px solid var(--line);
+ display:flex;
+ justify-content:space-around;
+ padding:8px;
+}
+.bottom button{
+ background:none;
+ border:0;
+ color:#687386;
+ font-size:10px;
+}
+.bottom button b{
+ display:block;
+ font-size:18px;
+}
+.bottom button.active{color:var(--navy)}
+
+.empty{
+ text-align:center;
+ padding:25px;
+ color:var(--muted);
+ font-size:12px;
+}
+
+.notice{
+ background:#fff8df;
+ border:1px solid #f1d879;
+ color:#735600;
+ padding:11px;
+ border-radius:12px;
+ font-size:11px;
+ margin-bottom:12px;
+}
+
+.profile{
+ background:linear-gradient(135deg,#071a35,#123b6e);
+ color:#fff;
+ border-radius:20px;
+ padding:18px;
+ box-shadow:var(--shadow);
+ margin-bottom:14px;
+}
+.profile h2{margin:0 0 5px;font-size:19px}
+.profile p{margin:3px 0;font-size:11px;opacity:.85}
+
+.quick{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
+}
+.quick button{
+ border:1px solid var(--line);
+ background:#fff;
+ border-radius:14px;
+ padding:11px 5px;
+ font-size:10px;
+ font-weight:700;
+ color:var(--navy);
+}
+.quick button span{
+ display:block;
+ font-size:19px;
+ margin-bottom:4px;
+}
+
+/* PRINT */
+.printonly{display:none}
+
+@media(min-width:700px){
+ .stats{grid-template-columns:repeat(4,1fr)}
+ .plan-grid{grid-template-columns:repeat(3,1fr)}
+ .grid{grid-template-columns:repeat(4,1fr)}
+ .modal{align-items:center}
+ .modalbox{border-radius:20px}
+ .bottom{display:none}
+ main{padding-bottom:30px}
+}
+
+@media(max-width:430px){
+ .formgrid{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .quick{grid-template-columns:repeat(4,1fr)}
+ .quick button{padding:9px 3px}
+}
+
+/* PRINT PAGE */
+@media print{
+ body{background:#fff}
+ .header,.menu,.bottom,.btnrow,#toast{display:none!important}
+ main{padding:0}
+ .page{display:none!important}
+ #printPage{display:block!important}
+ .printonly{display:block}
+ .printcard{
+  border:1px solid #ccc;
+  padding:20px;
+  margin-bottom:15px;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+ <div class="headrow">
+  <div class="brand">
+   <div class="logo">LIC</div>
+   <div>
+    <h1>MY LIC DOC</h1>
+    <small>Version 1.8 Professional</small>
+   </div>
+  </div>
+  <button class="iconbtn" onclick="openPage('settings')">⚙️</button>
+ </div>
+</header>
+
+<nav class="menu" id="menu"></nav>
+
+<main>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page active">
+ <div class="profile">
+  <h2>A. Latha B.Sc.</h2>
+  <p>LIC Life Insurance Advisor</p>
+  <p>Professional Customer & Policy Management</p>
+ </div>
+
+ <div class="title">
+  <div>
+   <h2>Dashboard</h2>
+   <div class="subtitle">Your LIC business overview</div>
+  </div>
+ </div>
+
+ <div class="stats">
+  <div class="stat"><div class="ico">👥</div><b id="statCustomers">0</b><span>Customers</span></div>
+  <div class="stat"><div class="ico">📋</div><b id="statPolicies">0</b><span>Policies</span></div>
+  <div class="stat"><div class="ico">📅</div><b id="statRenewals">0</b><span>Renewals</span></div>
+  <div class="stat"><div class="ico">🔔</div><b id="statFollowups">0</b><span>Follow-ups</span></div>
+ </div>
+
+ <div class="card">
+  <h3>⚡ Quick Actions</h3>
+  <div class="quick">
+   <button onclick="openCustomer()"><span>👤</span>Add Customer</button>
+   <button onclick="openPolicy()"><span>📋</span>Add Policy</button>
+   <button onclick="openPage('calculator')"><span>🧮</span>Calculator</button>
+   <button onclick="openPage('renewals')"><span>🔔</span>Renewals</button>
+  </div>
+ </div>
+
+ <div class="card">
+  <h3>📌 Today's Follow-ups</h3>
+  <div id="dashFollowups"></div>
+ </div>
+
+ <div class="card">
+  <h3>📅 Upcoming Renewals</h3>
+  <div id="dashRenewals"></div>
+ </div>
+</section>
+
+<!-- CUSTOMERS -->
+<section id="customers" class="page">
+ <div class="title">
+  <div><h2>👥 Customer CRM</h2><div class="subtitle">Customer management</div></div>
+  <button class="btn primary" onclick="openCustomer()">+ Add</button>
+ </div>
+
+ <div class="search">
+  <span>🔎</span>
+  <input id="customerSearch" placeholder="Search name / mobile / city..." oninput="renderCustomers()">
+ </div>
+
+ <div class="card">
+  <div id="customerTable"></div>
+ </div>
+</section>
+
+<!-- POLICIES -->
+<section id="policies" class="page">
+ <div class="title">
+  <div><h2>📋 Policies</h2><div class="subtitle">Policy portfolio</div></div>
+  <button class="btn primary" onclick="openPolicy()">+ Add</button>
+ </div>
+
+ <div class="search">
+  <span>🔎</span>
+  <input id="policySearch" placeholder="Search policy / customer / plan..." oninput="renderPolicies()">
+ </div>
+
+ <div class="card">
+  <div id="policyTable"></div>
+ </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans" class="page">
+ <div class="title">
+  <div><h2>📚 Plan Master</h2><div class="subtitle">LIC plan reference</div></div>
+ </div>
+ <div class="plan-grid" id="planGrid"></div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator" class="page">
+ <div class="title">
+  <div><h2>🧮 Premium Calculator</h2><div class="subtitle">Quick estimate calculator</div></div>
+ </div>
+
+ <div class="notice">
+  ⚠️ This calculator is a planning/estimate tool. Actual LIC premium depends on official quotation, age, term, mode, GST and applicable conditions.
+ </div>
+
+ <div class="card">
+  <div class="formgrid">
+   <div>
+    <label>Plan</label>
+    <select id="calcPlan"></select>
+   </div>
+   <div>
+    <label>Age</label>
+    <input id="calcAge" type="number" value="30">
+   </div>
+   <div>
+    <label>Sum Assured (₹)</label>
+    <input id="calcSA" type="number" value="1000000">
+   </div>
+   <div>
+    <label>Policy Term (Years)</label>
+    <input id="calcTerm" type="number" value="20">
+   </div>
+   <div>
+    <label>Premium Frequency</label>
+    <select id="calcMode">
+     <option value="yearly">Yearly</option>
+     <option value="halfyearly">Half-yearly</option>
+     <option value="quarterly">Quarterly</option>
+     <option value="monthly">Monthly</option>
+    </select>
+   </div>
+   <div>
+    <label>Illustrative Rate %</label>
+    <input id="calcRate" type="number" step="0.01" value="5">
+   </div>
+  </div>
+
+  <div class="btnrow">
+   <button class="btn primary" onclick="calculatePremium()">Calculate</button>
+   <button class="btn light" onclick="resetCalculator()">Reset</button>
+  </div>
+ </div>
+
+ <div class="card" id="calcResult" style="display:none">
+  <h3>💰 Estimate</h3>
+  <div class="stats">
+   <div class="stat"><span>Annual Base Estimate</span><b id="annualPremium">₹0</b></div>
+   <div class="stat"><span>Selected Mode</span><b id="modePremium">₹0</b></div>
+   <div class="stat"><span>Total Term Estimate</span><b id="totalPremium">₹0</b></div>
+   <div class="stat"><span>Sum Assured</span><b id="resultSA">₹0</b></div>
+  </div>
+ </div>
+</section>
+
+<!-- RENEWALS -->
+<section id="renewals" class="page">
+ <div class="title">
+  <div><h2>📅 Renewal Reminder</h2><div class="subtitle">Upcoming policy renewals</div></div>
+ </div>
+ <div class="card">
+  <div id="renewalTable"></div>
+ </div>
+</section>
+
+<!-- FOLLOWUPS -->
+<section id="followups" class="page">
+ <div class="title">
+  <div><h2>🔔 Follow-up Tracker</h2><div class="subtitle">Customer follow-up management</div></div>
+  <button class="btn primary" onclick="openFollowup()">+ Add</button>
+ </div>
+ <div class="card">
+  <div id="followupTable"></div>
+ </div>
+</section>
+
+<!-- REPORTS -->
+<section id="reports" class="page">
+ <div class="title">
+  <div><h2>📊 Reports</h2><div class="subtitle">Business summary</div></div>
+ </div>
+ <div class="stats">
+  <div class="stat"><span>Total Customers</span><b id="rCustomers">0</b></div>
+  <div class="stat"><span>Total Policies</span><b id="rPolicies">0</b></div>
+  <div class="stat"><span>Active Policies</span><b id="rActive">0</b></div>
+  <div class="stat"><span>Due Follow-ups</span><b id="rDue">0</b></div>
+ </div>
+ <div class="card">
+  <h3>📚 Plan-wise Policies</h3>
+  <div id="planReport"></div>
+ </div>
+</section>
+
+<!-- BACKUP -->
+<section id="backup" class="page">
+ <div class="title">
+  <div><h2>💾 Backup & Restore</h2><div class="subtitle">Protect your local data</div></div>
+ </div>
+
+ <div class="notice">
+  Your data is stored locally in this browser. Regularly download a backup and keep it safely.
+ </div>
+
+ <div class="card">
+  <h3>💾 Backup</h3>
+  <p class="subtitle">Download all customers, policies and follow-ups as JSON.</p>
+  <button class="btn primary" onclick="backupData()">⬇️ Backup Data</button>
+ </div>
+
+ <div class="card">
+  <h3>♻️ Restore</h3>
+  <p class="subtitle">Restore a previously downloaded MY LIC DOC backup.</p>
+  <input type="file" id="restoreFile" accept=".json" onchange="restoreData(event)">
+ </div>
+
+ <div class="card">
+  <h3>⬇️ Download Lathakaran Data</h3>
+  <p class="subtitle">Export CRM information as CSV.</p>
+  <button class="btn gold" onclick="downloadLathakaranData()">Download Lathakaran Data</button>
+ </div>
+</section>
+
+<!-- PDF -->
+<section id="documents" class="page">
+ <div class="title">
+  <div><h2>📄 Documents</h2><div class="subtitle">Print / Save as PDF</div></div>
+ </div>
+
+ <div class="card">
+  <h3>🖨️ Policy Document</h3>
+  <select id="printPolicy"></select>
+  <div class="btnrow">
+   <button class="btn primary" onclick="preparePrint()">🖨️ Print / Save PDF</button>
+  </div>
+ </div>
+
+ <div class="card">
+  <h3>🟢 WhatsApp</h3>
+  <p class="subtitle">Select a customer and send a pre-filled message.</p>
+  <select id="whatsappCustomer"></select>
+  <textarea id="whatsappMessage">வணக்கம். உங்கள் LIC policy தொடர்பாக follow-up செய்ய தொடர்பு கொள்கிறேன். நன்றி.</textarea>
+  <div class="btnrow">
+   <button class="btn green" onclick="sendWhatsApp()">🟢 Open WhatsApp</button>
+  </div>
+ </div>
+</section>
+
+<!-- SEARCH -->
+<section id="search" class="page">
+ <div class="title">
+  <div><h2>🔎 Global Search</h2><div class="subtitle">Search customer and policy data</div></div>
+ </div>
+ <div class="card">
+  <input id="globalSearch" placeholder="Type name, mobile, policy no, plan..." oninput="globalSearch()">
+ </div>
+ <div id="globalResults"></div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+ <div class="title">
+  <div><h2>⚙️ Settings</h2><div class="subtitle">App configuration</div></div>
+ </div>
+
+ <div class="card">
+  <h3>👤 Advisor Profile</h3>
+  <div class="formgrid">
+   <div><label>Name</label><input id="setName" value="A. Latha B.Sc."></div>
+   <div><label>Profession</label><input id="setProfession" value="LIC Life Insurance Advisor"></div>
+   <div><label>Location</label><input id="setLocation" value="Thiruthuraipoondi"></div>
+   <div><label>Mobile</label><input id="setMobile"></div>
+  </div>
+  <button class="btn primary" onclick="saveSettings()">Save Settings</button>
+ </div>
+
+ <div class="card">
+  <h3>🗑️ Data Management</h3>
+  <p class="subtitle">Delete all locally stored MY LIC DOC data.</p>
+  <button class="btn red" onclick="clearAllData()">Delete All Data</button>
+ </div>
+
+ <div class="card">
+  <h3>ℹ️ About</h3>
+  <p class="subtitle">
+   MY LIC DOC Version 1.8 Professional<br>
+   Single-file LIC Agent Management System
+  </p>
+ </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+ <div class="title">
+  <div><h2>ℹ️ About MY LIC DOC</h2><div class="subtitle">Professional edition</div></div>
+ </div>
+ <div class="card">
+  <h3>MY LIC DOC Version 1.8</h3>
+  <p class="subtitle">
+   Customer • Policy • Premium • Renewal • Follow-up • Documents • Backup
+  </p>
+  <hr>
+  <p>
+   இந்த application ஒரு mobile-first LIC advisor management tool.
+   Customer மற்றும் policy data browser LocalStorage-ல் சேமிக்கப்படுகிறது.
+  </p>
+ </div>
+</section>
+
+<!-- HELP -->
+<section id="help" class="page">
+ <div class="title">
+  <div><h2>❓ Help</h2><div class="subtitle">How to use</div></div>
+ </div>
+
+ <div class="card">
+  <h3>1. Customer Add</h3>
+  <p class="subtitle">Customers → + Add → details → Save.</p>
+ </div>
+ <div class="card">
+  <h3>2. Policy Add</h3>
+  <p class="subtitle">Policies → + Add → customer + plan + renewal date → Save.</p>
+ </div>
+ <div class="card">
+  <h3>3. Renewal</h3>
+  <p class="subtitle">Renewal Reminder menu-ல் upcoming renewals பார்க்கலாம்.</p>
+ </div>
+ <div class="card">
+  <h3>4. PDF</h3>
+  <p class="subtitle">Documents → Policy select → Print / Save PDF.</p>
+ </div>
+ <div class="card">
+  <h3>5. WhatsApp</h3>
+  <p class="subtitle">Customer select செய்து Open WhatsApp அழுத்தவும்.</p>
+ </div>
+ <div class="card">
+  <h3>6. Backup</h3>
+  <p class="subtitle">Backup & Restore → Backup Data. புதிய phone/browser-ல் Restore செய்யலாம்.</p>
+ </div>
+</section>
+
+<!-- PRINT PAGE -->
+<section id="printPage" class="page">
+ <div class="printonly" id="printContent"></div>
+</section>
+
+</main>
+
+<div class="bottom">
+ <button onclick="openPage('dashboard')" id="bDashboard"><b>🏠</b>Home</button>
+ <button onclick="openPage('customers')" id="bCustomers"><b>👥</b>CRM</button>
+ <button onclick="openPage('policies')" id="bPolicies"><b>📋</b>Policy</button>
+ <button onclick="openPage('renewals')" id="bRenewals"><b>🔔</b>Renew</button>
+ <button onclick="openPage('settings')" id="bSettings"><b>⚙️</b>Settings</button>
+</div>
+
+<div id="toast"></div>
+
+<!-- CUSTOMER MODAL -->
+<div class="modal" id="customerModal">
+ <div class="modalbox">
+  <div class="modalhead">
+   <h3 id="customerModalTitle">Add Customer</h3>
+   <button class="iconbtn" onclick="closeModal('customerModal')">✕</button>
+  </div>
+
+  <input type="hidden" id="customerId">
+
+  <div class="formgrid">
+   <div class="full">
+    <label>Customer Name *</label>
+    <input id="cName" placeholder="Full name">
+   </div>
+   <div>
+    <label>Mobile *</label>
+    <input id="cMobile" type="tel" placeholder="10 digit mobile">
+   </div>
+   <div>
+    <label>Date of Birth</label>
+    <input id="cDob" type="date">
+   </div>
+   <div>
+    <label>City</label>
+    <input id="cCity" placeholder="City">
+   </div>
+   <div>
+    <label>Occupation</label>
+    <input id="cOccupation" placeholder="Occupation">
+   </div>
+   <div class="full">
+    <label>Address</label>
+    <textarea id="cAddress"></textarea>
+   </div>
+   <div class="full">
+    <label>Notes</label>
+    <textarea id="cNotes"></textarea>
+   </div>
+  </div>
+
+  <div class="btnrow">
+   <button class="btn primary" onclick="saveCustomer()">Save Customer</button>
+   <button class="btn light" onclick="closeModal('customerModal')">Cancel</button>
+  </div>
+ </div>
+</div>
+
+<!-- POLICY MODAL -->
+<div class="modal" id="policyModal">
+ <div class="modalbox">
+  <div class="modalhead">
+   <h3 id="policyModalTitle">Add Policy</h3>
+   <button class="iconbtn" onclick="closeModal('policyModal')">✕</button>
+  </div>
+
+  <input type="hidden" id="policyId">
+
+  <div class="formgrid">
+   <div class="full">
+    <label>Customer *</label>
+    <select id="pCustomer"></select>
+   </div>
+   <div>
+    <label>Policy Number *</label>
+    <input id="pNumber" placeholder="Policy number">
+   </div>
+   <div>
+    <label>Plan</label>
+    <select id="pPlan"></select>
+   </div>
+   <div>
+    <label>Sum Assured (₹)</label>
+    <input id="pSA" type="number">
+   </div>
+   <div>
+    <label>Premium (₹)</label>
+    <input id="pPremium" type="number">
+   </div>
+   <div>
+    <label>Premium Mode</label>
+    <select id="pMode">
+     <option>Yearly</option>
+     <option>Half-yearly</option>
+     <option>Quarterly</option>
+     <option>Monthly</option>
+    </select>
+   </div>
+   <div>
+    <label>Next Renewal Date</label>
+    <input id="pRenewal" type="date">
+   </div>
+   <div>
+    <label>Policy Status</label>
+    <select id="pStatus">
+     <option>Active</option>
+     <option>Paid</option>
+     <option>Due</option>
+     <option>Lapsed</option>
+     <option>Closed</option>
+    </select>
+   </div>
+   <div>
+    <label>Start Date</label>
+    <input id="pStart" type="date">
+   </div>
+   <div>
+    <label>Maturity Date</label>
+    <input id="pMaturity" type="date">
+   </div>
+   <div class="full">
+    <label>Notes</label>
+    <textarea id="pNotes"></textarea>
+   </div>
+  </div>
+
+  <div class="btnrow">
+   <button class="btn primary" onclick="savePolicy()">Save Policy</button>
+   <button class="btn light" onclick="closeModal('policyModal')">Cancel</button>
+  </div>
+ </div>
+</div>
+
+<!-- FOLLOWUP MODAL -->
+<div class="modal" id="followupModal">
+ <div class="modalbox">
+  <div class="modalhead">
+   <h3>Add Follow-up</h3>
+   <button class="iconbtn" onclick="closeModal('followupModal')">✕</button>
+  </div>
+
+  <input type="hidden" id="followId">
+
+  <div class="formgrid">
+   <div class="full">
+    <label>Customer *</label>
+    <select id="fCustomer"></select>
+   </div>
+   <div>
+    <label>Follow-up Date *</label>
+    <input id="fDate" type="date">
+   </div>
+   <div>
+    <label>Type</label>
+    <select id="fType">
+     <option>Call</option>
+     <option>WhatsApp</option>
+     <option>Meeting</option>
+     <option>Proposal</option>
+     <option>Other</option>
+    </select>
+   </div>
+   <div>
+    <label>Status</label>
+    <select id="fStatus">
+     <option>Pending</option>
+     <option>Completed</option>
+    </select>
+   </div>
+   <div class="full">
+    <label>Notes</label>
+    <textarea id="fNotes"></textarea>
+   </div>
+  </div>
+
+  <div class="btnrow">
+   <button class="btn primary" onclick="saveFollowup()">Save Follow-up</button>
+   <button class="btn light" onclick="closeModal('followupModal')">Cancel</button>
+  </div>
+ </div>
+</div>
+
+<script>
+/* =========================================================
+   MY LIC DOC VERSION 1.8 PROFESSIONAL
+   SINGLE INDEX.HTML
+   ========================================================= */
+
+const PLAN_MASTER=[
+ {no:"715",name:"New Jeevan Anand"},
+ {no:"933",name:"Jeevan Lakshya"},
+ {no:"771",name:"Jeevan Utsav"},
+ {no:"881",name:"Bima Lakshmi"},
+ {no:"874",name:"Amritbaal"},
+ {no:"912",name:"Nav Jeevan Shree"},
+ {no:"720",name:"New Money Back Plan"},
+ {no:"758",name:"New Jeevan Shanti"},
+ {no:"889",name:"New Jeevan Sathi"},
+ {no:"733",name:"Jeevan Labh"},
+ {no:"721",name:"Plan 721"},
+ {no:"714",name:"Plan 714"},
+ {no:"888",name:"Plan 888"},
+ {no:"745",name:"Plan 745"},
+ {no:"734",name:"Plan 734"},
+ {no:"774",name:"Plan 774"},
+ {no:"736",name:"Plan 736"},
+ {no:"Tarun",name:"Jeevan Tarun"},
+ {no:"Umang",name:"Jeevan Umang"}
+];
+
+let customers=load("lic_customers",[]);
+let policies=load("lic_policies",[]);
+let followups=load("lic_followups",[]);
+let settings=load("lic_settings",{
+ name:"A. Latha B.Sc.",
+ profession:"LIC Life Insurance Advisor",
+ location:"Thiruthuraipoondi",
+ mobile:""
+});
+
+const MENUS=[
+ ["dashboard","🏠 Dashboard"],
+ ["customers","👥 Customer CRM"],
+ ["policies","📋 Policies"],
+ ["plans","📚 Plan Master"],
+ ["calculator","🧮 Premium Calculator"],
+ ["renewals","📅 Renewal Reminder"],
+ ["followups","🔔 Follow-up"],
+ ["documents","📄 PDF / WhatsApp"],
+ ["reports","📊 Reports"],
+ ["backup","💾 Backup / Restore"],
+ ["search","🔎 Search"],
+ ["settings","⚙️ Settings"],
+ ["about","ℹ️ About"],
+ ["help","❓ Help"]
+];
+
+/* 19 logical menu entries */
+const EXTRA=[
+ ["leads","🎯 Leads"],
+ ["collections","💰 Collections"],
+ ["tasks","✅ Tasks"],
+ ["notifications","🔔 Notifications"],
+ ["lathakaran","⬇️ Lathakaran Data"]
+];
+
+function load(key,fallback){
+ try{
+  const x=localStorage.getItem(key);
+  return x?JSON.parse(x):fallback;
+ }catch(e){return fallback}
+}
+
+function save(key,value){
+ localStorage.setItem(key,JSON.stringify(value));
+}
+
+function uid(prefix){
+ return prefix+"_"+Date.now()+"_"+Math.random().toString(36).slice(2,7);
+}
+
+function esc(v){
+ return String(v??"")
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;");
+}
+
+function money(n){
+ return "₹"+Number(n||0).toLocaleString("en-IN");
+}
+
+function toast(msg){
+ const t=document.getElementById("toast");
+ t.textContent=msg;
+ t.classList.add("show");
+ setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+function today(){
+ return new Date().toISOString().slice(0,10);
+}
+
+function formatDate(d){
+ if(!d)return "-";
+ const a=d.split("-");
+ if(a.length!==3)return d;
+ return `${a[2]}-${a[1]}-${a[0]}`;
+}
+
+function daysUntil(date){
+ if(!date)return 99999;
+ const a=new Date();
+ const b=new Date(date+"T00:00:00");
+ a.setHours(0,0,0,0);
+ return Math.ceil((b-a)/86400000);
+}
+
+/* MENU */
+function buildMenu(){
+ const all=[...MENUS,...EXTRA];
+ const m=document.getElementById("menu");
+ m.innerHTML=all.map(x=>
+  `<button id="m_${x[0]}" onclick="openPage('${x[0]}')">${x[1]}</button>`
+ ).join("");
+}
+
+/* For extra menu pages, create generic content */
+function createExtraPages(){
+ EXTRA.forEach(x=>{
+  const s=document.createElement("section");
+  s.id=x[0];
+  s.className="page";
+  s.innerHTML=`
+   <div class="title">
+    <div><h2>${x[1]}</h2><div class="subtitle">Professional module</div></div>
+   </div>
+   <div class="card">
+    <h3>${x[1]}</h3>
+    <p class="subtitle">
+     This module is included in Version 1.8 Professional.
+     Use the main CRM, policy, follow-up and report modules for management.
+    </p>
+   </div>`;
+  document.querySelector("main").appendChild(s);
+ });
+}
+
+function openPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const page=document.getElementById(id);
+ if(!page)return;
+ page.classList.add("active");
+
+ document.querySelectorAll(".menu button").forEach(b=>b.classList.remove("active"));
+ const mb=document.getElementById("m_"+id);
+ if(mb)mb.classList.add("active");
+
+ document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("active"));
+ const bb=document.getElementById("b"+id.charAt(0).toUpperCase()+id.slice(1));
+ if(bb)bb.classList.add("active");
+
+ refresh();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* DASHBOARD */
+function refresh(){
+ updateStats();
+ renderDashboard();
+ renderCustomers();
+ renderPolicies();
+ renderPlans();
+ renderRenewals();
+ renderFollowups();
+ renderReports();
+ renderSelectors();
+ loadSettings();
+}
+
+function updateStats(){
+ const renewals=policies.filter(p=>daysUntil(p.renewal)<=30 && daysUntil(p.renewal)>=0);
+ const due=followups.filter(f=>f.status!=="Completed" && daysUntil(f.date)<=0);
+
+ document.getElementById("statCustomers").textContent=customers.length;
+ document.getElementById("statPolicies").textContent=policies.length;
+ document.getElementById("statRenewals").textContent=renewals.length;
+ document.getElementById("statFollowups").textContent=due.length;
+}
+
+function customerName(id){
+ const c=customers.find(x=>x.id===id);
+ return c?c.name:"Unknown";
+}
+
+function renderDashboard(){
+ const f=followups
+  .filter(x=>x.status!=="Completed" && daysUntil(x.date)<=0)
+  .sort((a,b)=>a.date.localeCompare(b.date))
+  .slice(0,5);
+
+ document.getElementById("dashFollowups").innerHTML=
+  f.length?f.map(x=>`
+   <div style="padding:9px 0;border-bottom:1px solid var(--line)">
+    <b>${esc(customerName(x.customerId))}</b>
+    <span class="badge red">${formatDate(x.date)}</span>
+    <div class="subtitle">${esc(x.type)} — ${esc(x.notes||"Follow-up")}</div>
+   </div>`).join("")
+   :`<div class="empty">No pending follow-ups 🎉</div>`;
+
+ const r=policies
+  .filter(x=>daysUntil(x.renewal)<=30 && daysUntil(x.renewal)>=0)
+  .sort((a,b)=>a.renewal.localeCompare(b.renewal))
+  .slice(0,5);
+
+ document.getElementById("dashRenewals").innerHTML=
+  r.length?r.map(x=>`
+   <div style="padding:9px 0;border-bottom:1px solid var(--line)">
+    <b>${esc(customerName(x.customerId))}</b>
+    <span class="badge gold">${formatDate(x.renewal)}</span>
+    <div class="subtitle">${esc(x.number)} — ${esc(planName(x.plan))}</div>
+   </div>`).join("")
+   :`<div class="empty">No renewals in next 30 days.</div>`;
+}
+
+/* CUSTOMER */
+function openCustomer(id=null){
+ document.getElementById("customerModal").classList.add("show");
+
+ document.getElementById("customerId").value="";
+ document.getElementById("cName").value="";
+ document.getElementById("cMobile").value="";
+ document.getElementById("cDob").value="";
+ document.getElementById("cCity").value="";
+ document.getElementById("cOccupation").value="";
+ document.getElementById("cAddress").value="";
+ document.getElementById("cNotes").value="";
+
+ if(id){
+  const c=customers.find(x=>x.id===id);
+  if(!c)return;
+  document.getElementById("customerId").value=c.id;
+  document.getElementById("cName").value=c.name;
+  document.getElementById("cMobile").value=c.mobile;
+  document.getElementById("cDob").value=c.dob||"";
+  document.getElementById("cCity").value=c.city||"";
+  document.getElementById("cOccupation").value=c.occupation||"";
+  document.getElementById("cAddress").value=c.address||"";
+  document.getElementById("cNotes").value=c.notes||"";
+  document.getElementById("customerModalTitle").textContent="Edit Customer";
+ }else{
+  document.getElementById("customerModalTitle").textContent="Add Customer";
+ }
+}
+
+function saveCustomer(){
+ const name=document.getElementById("cName").value.trim();
+ const mobile=document.getElementById("cMobile").value.trim();
+
+ if(!name){
+  toast("Customer name required");
+  return;
+ }
+
+ const id=document.getElementById("customerId").value;
+
+ const obj={
+  id:id||uid("CUS"),
+  name,
+  mobile,
+  dob:document.getElementById("cDob").value,
+  city:document.getElementById("cCity").value.trim(),
+  occupation:document.getElementById("cOccupation").value.trim(),
+  address:document.getElementById("cAddress").value.trim(),
+  notes:document.getElementById("cNotes").value.trim(),
+  updated:new Date().toISOString()
+ };
+
+ if(id){
+  customers=customers.map(x=>x.id===id?obj:x);
+ }else{
+  customers.unshift(obj);
+ }
+
+ save("lic_customers",customers);
+ closeModal("customerModal");
+ refresh();
+ toast("Customer saved successfully");
+}
+
+function deleteCustomer(id){
+ if(!confirm("Delete this customer?"))return;
+ customers=customers.filter(x=>x.id!==id);
+ policies=policies.filter(x=>x.customerId!==id);
+ followups=followups.filter(x=>x.customerId!==id);
+ save("lic_customers",customers);
+ save("lic_policies",policies);
+ save("lic_followups",followups);
+ refresh();
+ toast("Customer deleted");
+}
+
+function renderCustomers(){
+ const q=(document.getElementById("customerSearch")?.value||"").toLowerCase();
+ const list=customers.filter(c=>
+  [c.name,c.mobile,c.city,c.occupation].join(" ").toLowerCase().includes(q)
+ );
+
+ document.getElementById("customerTable").innerHTML=list.length?`
+ <div class="tablewrap"><table>
+ <thead><tr>
+ <th>Name</th><th>Mobile</th><th>City</th><th>Policies</th><th>Action</th>
+ </tr></thead>
+ <tbody>
+ ${list.map(c=>{
+  const pc=policies.filter(p=>p.customerId===c.id).length;
+  return `<tr>
+   <td><b>${esc(c.name)}</b></td>
+   <td>${esc(c.mobile||"-")}</td>
+   <td>${esc(c.city||"-")}</td>
+   <td>${pc}</td>
+   <td>
+    <button class="btn light" onclick="openCustomer('${c.id}')">Edit</button>
+    <button class="btn red" onclick="deleteCustomer('${c.id}')">Delete</button>
+   </td>
+  </tr>`;
+ }).join("")}
+ </tbody></table></div>`
+ :`<div class="empty">No customers found.</div>`;
+}
+
+/* POLICY */
+function openPolicy(id=null){
+ if(!customers.length){
+  toast("Add a customer first");
+  openPage("customers");
+  return;
+ }
+
+ renderSelectors();
+
+ document.getElementById("policyModal").classList.add("show");
+ document.getElementById("policyId").value="";
+ document.getElementById("pNumber").value="";
+ document.getElementById("pSA").value="";
+ document.getElementById("pPremium").value="";
+ document.getElementById("pRenewal").value="";
+ document.getElementById("pStart").value="";
+ document.getElementById("pMaturity").value="";
+ document.getElementById("pStatus").value="Active";
+ document.getElementById("pNotes").value="";
+
+ if(id){
+  const p=policies.find(x=>x.id===id);
+  if(!p)return;
+  document.getElementById("policyId").value=p.id;
+  document.getElementById("pCustomer").value=p.customerId;
+  document.getElementById("pNumber").value=p.number;
+  document.getElementById("pPlan").value=p.plan;
+  document.getElementById("pSA").value=p.sa||"";
+  document.getElementById("pPremium").value=p.premium||"";
+  document.getElementById("pMode").value=p.mode||"Yearly";
+  document.getElementById("pRenewal").value=p.renewal||"";
+  document.getElementById("pStatus").value=p.status||"Active";
+  document.getElementById("pStart").value=p.start||"";
+  document.getElementById("pMaturity").value=p.maturity||"";
+  document.getElementById("pNotes").value=p.notes||"";
+  document.getElementById("policyModalTitle").textContent="Edit Policy";
+ }else{
+  document.getElementById("policyModalTitle").textContent="Add Policy";
+ }
+}
+
+function savePolicy(){
+ const customerId=document.getElementById("pCustomer").value;
+ const number=document.getElementById("pNumber").value.trim();
+
+ if(!customerId||!number){
+  toast("Customer and Policy Number required");
+  return;
+ }
+
+ const id=document.getElementById("policyId").value;
+
+ const obj={
+  id:id||uid("POL"),
+  customerId,
+  number,
+  plan:document.getElementById("pPlan").value,
+  sa:Number(document.getElementById("pSA").value||0),
+  premium:Number(document.getElementById("pPremium").value||0),
+  mode:document.getElementById("pMode").value,
+  renewal:document.getElementById("pRenewal").value,
+  status:document.getElementById("pStatus").value,
+  start:document.getElementById("pStart").value,
+  maturity:document.getElementById("pMaturity").value,
+  notes:document.getElementById("pNotes").value.trim(),
+  updated:new Date().toISOString()
+ };
+
+ if(id)policies=policies.map(x=>x.id===id?obj:x);
+ else policies.unshift(obj);
+
+ save("lic_policies",policies);
+ closeModal("policyModal");
+ refresh();
+ toast("Policy saved successfully");
+}
+
+function deletePolicy(id){
+ if(!confirm("Delete this policy?"))return;
+ policies=policies.filter(x=>x.id!==id);
+ save("lic_policies",policies);
+ refresh();
+ toast("Policy deleted");
+}
+
+function planName(no){
+ const p=PLAN_MASTER.find(x=>x.no===no);
+ return p?p.name:no||"-";
+}
+
+function renderPolicies(){
+ const q=(document.getElementById("policySearch")?.value||"").toLowerCase();
+ const list=policies.filter(p=>
+  [p.number,customerName(p.customerId),planName(p.plan),p.status]
+  .join(" ").toLowerCase().includes(q)
+ );
+
+ document.getElementById("policyTable").innerHTML=list.length?`
+ <div class="tablewrap"><table>
+ <thead><tr>
+ <th>Customer</th><th>Policy</th><th>Plan</th><th>Premium</th><th>Renewal</th><th>Status</th><th>Action</th>
+ </tr></thead>
+ <tbody>
+ ${list.map(p=>{
+  const d=daysUntil(p.renewal);
+  let cls=d<0?"red":d<=30?"gold":"green";
+  return `<tr>
+   <td>${esc(customerName(p.customerId))}</td>
+   <td>${esc(p.number)}</td>
+   <td>${esc(planName(p.plan))}</td>
+   <td>${money(p.premium)}</td>
+   <td><span class="badge ${cls}">${formatDate(p.renewal)}</span></td>
+   <td>${esc(p.status)}</td>
+   <td>
+    <button class="btn light" onclick="openPolicy('${p.id}')">Edit</button>
+    <button class="btn red" onclick="deletePolicy('${p.id}')">Delete</button>
+   </td>
+  </tr>`;
+ }).join("")}
+ </tbody></table></div>`
+ :`<div class="empty">No policies found.</div>`;
+}
+
+/* PLANS */
+function renderPlans(){
+ document.getElementById("planGrid").innerHTML=PLAN_MASTER.map(p=>`
+  <div class="plan">
+   <span class="pno">Plan ${esc(p.no)}</span>
+   <h3>${esc(p.name)}</h3>
+   <p>View plan reference and use Premium Calculator.</p>
+   <div class="btnrow">
+    <button class="btn light" onclick="selectPlan('${p.no}')">Calculate</button>
+   </div>
+  </div>
+ `).join("");
+}
+
+function selectPlan(no){
+ openPage("calculator");
+ document.getElementById("calcPlan").value=no;
+}
+
+/* SELECTORS */
+function renderSelectors(){
+ const customerOptions=customers.map(c=>
+  `<option value="${c.id}">${esc(c.name)} — ${esc(c.mobile||"")}</option>`
+ ).join("");
+
+ document.getElementById("pCustomer").innerHTML=
+  `<option value="">Select Customer</option>${customerOptions}`;
+
+ document.getElementById("fCustomer").innerHTML=
+  `<option value="">Select Customer</option>${customerOptions}`;
+
+ document.getElementById("whatsappCustomer").innerHTML=
+  `<option value="">Select Customer</option>${customerOptions}`;
+
+ document.getElementById("pPlan").innerHTML=
+  PLAN_MASTER.map(p=>`<option value="${p.no}">${esc(p.no)} — ${esc(p.name)}</option>`).join("");
+
+ document.getElementById("calcPlan").innerHTML=
+  PLAN_MASTER.map(p=>`<option value="${p.no}">${esc(p.no)} — ${esc(p.name)}</option>`).join("");
+
+ document.getElementById("printPolicy").innerHTML=
+  `<option value="">Select Policy</option>`+
+  policies.map(p=>`<option value="${p.id}">
+   ${esc(p.number)} — ${esc(customerName(p.customerId))}
+  </option>`).join("");
+}
+
+/* CALCULATOR */
+function calculatePremium(){
+ const sa=Number(document.getElementById("calcSA").value||0);
+ const term=Number(document.getElementById("calcTerm").value||1);
+ const rate=Number(document.getElementById("calcRate").value||0);
+ const mode=document.getElementById("calcMode").value;
+
+ if(sa<=0||term<=0){
+  toast("Enter Sum Assured and Term");
+  return;
+ }
+
+ /*
+  Illustrative planning formula.
+  This is NOT an official LIC quotation.
+ */
+ const annual=sa*(rate/100);
+ let modePremium=annual;
+
+ if(mode==="halfyearly")modePremium=annual/2;
+ if(mode==="quarterly")modePremium=annual/4;
+ if(mode==="monthly")modePremium=annual/12;
+
+ const total=annual*term;
+
+ document.getElementById("annualPremium").textContent=money(annual);
+ document.getElementById("modePremium").textContent=money(modePremium);
+ document.getElementById("totalPremium").textContent=money(total);
+ document.getElementById("resultSA").textContent=money(sa);
+ document.getElementById("calcResult").style.display="block";
+}
+
+function resetCalculator(){
+ document.getElementById("calcAge").value=30;
+ document.getElementById("calcSA").value=1000000;
+ document.getElementById("calcTerm").value=20;
+ document.getElementById("calcRate").value=5;
+ document.getElementById("calcResult").style.display="none";
+}
+
+/* RENEWALS */
+function renderRenewals(){
+ const list=policies
+  .filter(p=>p.renewal)
+  .sort((a,b)=>a.renewal.localeCompare(b.renewal));
+
+ document.getElementById("renewalTable").innerHTML=list.length?`
+ <div class="tablewrap"><table>
+ <thead><tr>
+ <th>Customer</th><th>Policy</th><th>Plan</th><th>Renewal</th><th>Days</th><th>Status</th><th>Action</th>
+ </tr></thead>
+ <tbody>
+ ${list.map(p=>{
+  const d=daysUntil(p.renewal);
+  const cls=d<0?"red":d<=30?"gold":"green";
+  return `<tr>
+   <td>${esc(customerName(p.customerId))}</td>
+   <td>${esc(p.number)}</td>
+   <td>${esc(planName(p.plan))}</td>
+   <td>${formatDate(p.renewal)}</td>
+   <td><span class="badge ${cls}">${d<0?"Overdue":d+" days"}</span></td>
+   <td>${esc(p.status)}</td>
+   <td><button class="btn green" onclick="whatsappForCustomer('${p.customerId}','Renewal reminder: Policy ${p.number} is due on ${formatDate(p.renewal)}.')">WhatsApp</button></td>
+  </tr>`;
+ }).join("")}
+ </tbody></table></div>`
+ :`<div class="empty">No renewal records.</div>`;
+}
+
+/* FOLLOWUP */
+function openFollowup(id=null){
+ renderSelectors();
+ document.getElementById("followupModal").classList.add("show");
+
+ document.getElementById("followId").value="";
+ document.getElementById("fDate").value=today();
+ document.getElementById("fStatus").value="Pending";
+ document.getElementById("fNotes").value="";
+
+ if(id){
+  const f=followups.find(x=>x.id===id);
+  if(!f)return;
+  document.getElementById("followId").value=f.id;
+  document.getElementById("fCustomer").value=f.customerId;
+  document.getElementById("fDate").value=f.date;
+  document.getElementById("fType").value=f.type;
+  document.getElementById("fStatus").value=f.status;
+  document.getElementById("fNotes").value=f.notes||"";
+ }
+}
+
+function saveFollowup(){
+ const customerId=document.getElementById("fCustomer").value;
+ const date=document.getElementById("fDate").value;
+
+ if(!customerId||!date){
+  toast("Customer and date required");
+  return;
+ }
+
+ const id=document.getElementById("followId").value;
+
+ const obj={
+  id:id||uid("FOL"),
+  customerId,
+  date,
+  type:document.getElementById("fType").value,
+  status:document.getElementById("fStatus").value,
+  notes:document.getElementById("fNotes").value.trim()
+ };
+
+ if(id)followups=followups.map(x=>x.id===id?obj:x);
+ else followups.unshift(obj);
+
+ save("lic_followups",followups);
+ closeModal("followupModal");
+ refresh();
+ toast("Follow-up saved");
+}
+
+function deleteFollowup(id){
+ if(!confirm("Delete follow-up?"))return;
+ followups=followups.filter(x=>x.id!==id);
+ save("lic_followups",followups);
+ refresh();
+}
+
+function completeFollowup(id){
+ const f=followups.find(x=>x.id===id);
+ if(!f)return;
+ f.status="Completed";
+ save("lic_followups",followups);
+ refresh();
+ toast("Follow-up completed");
+}
+
+function renderFollowups(){
+ const list=[...followups].sort((a,b)=>a.date.localeCompare(b.date));
+
+ document.getElementById("followupTable").innerHTML=list.length?`
+ <div class="tablewrap"><table>
+ <thead><tr>
+ <th>Customer</th><th>Date</th><th>Type</th><th>Status</th><th>Notes</th><th>Action</th>
+ </tr></thead>
+ <tbody>
+ ${list.map(f=>`
+ <tr>
+  <td>${esc(customerName(f.customerId))}</td>
+  <td>${formatDate(f.date)}</td>
+  <td>${esc(f.type)}</td>
+  <td><span class="badge ${f.status==="Completed"?"green":"gold"}">${esc(f.status)}</span></td>
+  <td>${esc(f.notes||"-")}</td>
+  <td>
+   ${f.status!=="Completed"?`<button class="btn green" onclick="completeFollowup('${f.id}')">Done</button>`:""}
+   <button class="btn light" onclick="openFollowup('${f.id}')">Edit</button>
+   <button class="btn red" onclick="deleteFollowup('${f.id}')">Delete</button>
+  </td>
+ </tr>`).join("")}
+ </tbody></table></div>`
+ :`<div class="empty">No follow-ups.</div>`;
+}
+
+/* REPORTS */
+function renderReports(){
+ const active=policies.filter(p=>p.status==="Active"||p.status==="Paid").length;
+ const due=followups.filter(f=>f.status!=="Completed" && daysUntil(f.date)<=0).length;
+
+ document.getElementById("rCustomers").textContent=customers.length;
+ document.getElementById("rPolicies").textContent=policies.length;
+ document.getElementById("rActive").textContent=active;
+ document.getElementById("rDue").textContent=due;
+
+ const counts={};
+ policies.forEach(p=>{
+  counts[p.plan]=(counts[p.plan]||0)+1;
+ });
+
+ const rows=Object.entries(counts)
+  .sort((a,b)=>b[1]-a[1]);
+
+ document.getElementById("planReport").innerHTML=rows.length?
+ `<div class="tablewrap"><table>
+  <thead><tr><th>Plan</th><th>Plan No.</th><th>Policies</th></tr></thead>
+  <tbody>
+  ${rows.map(([no,count])=>`
+   <tr><td>${esc(planName(no))}</td><td>${esc(no)}</td><td>${count}</td></tr>
+  `).join("")}
+  </tbody>
+ </table></div>`
+ :`<div class="empty">No policy data.</div>`;
+}
+
+/* PDF / PRINT */
+function preparePrint(){
+ const id=document.getElementById("printPolicy").value;
+ if(!id){
+  toast("Select a policy");
+  return;
+ }
+
+ const p=policies.find(x=>x.id===id);
+ if(!p)return;
+
+ const c=customers.find(x=>x.id===p.customerId);
+
+ document.getElementById("printContent").innerHTML=`
+  <div class="printcard">
+   <h1 style="text-align:center;color:#071a35">MY LIC DOC</h1>
+   <p style="text-align:center">Policy Details</p>
+   <hr>
+   <h2>Customer Details</h2>
+   <p><b>Name:</b> ${esc(c?.name||"-")}</p>
+   <p><b>Mobile:</b> ${esc(c?.mobile||"-")}</p>
+   <p><b>Address:</b> ${esc(c?.address||"-")}</p>
+
+   <h2>Policy Details</h2>
+   <p><b>Policy Number:</b> ${esc(p.number)}</p>
+   <p><b>Plan:</b> ${esc(planName(p.plan))} (${esc(p.plan)})</p>
+   <p><b>Sum Assured:</b> ${money(p.sa)}</p>
+   <p><b>Premium:</b> ${money(p.premium)}</p>
+   <p><b>Mode:</b> ${esc(p.mode)}</p>
+   <p><b>Next Renewal:</b> ${formatDate(p.renewal)}</p>
+   <p><b>Status:</b> ${esc(p.status)}</p>
+
+   <hr>
+   <p><b>Advisor:</b> ${esc(settings.name)}</p>
+   <p>${esc(settings.profession)}</p>
+   <p>${esc(settings.location)}</p>
+   <p>${esc(settings.mobile)}</p>
+
+   <p style="margin-top:30px;font-size:10px">
+   This document is generated by MY LIC DOC for record/print purposes.
+   Please verify official policy information from LIC records.
+   </p>
+  </div>
+ `;
+
+ window.print();
+}
+
+/* WHATSAPP */
+function normalizeMobile(m){
+ let x=String(m||"").replace(/\D/g,"");
+ if(x.length===10)x="91"+x;
+ return x;
+}
+
+function sendWhatsApp(){
+ const id=document.getElementById("whatsappCustomer").value;
+ const msg=document.getElementById("whatsappMessage").value.trim();
+
+ if(!id){
+  toast("Select customer");
+  return;
+ }
+
+ whatsappForCustomer(id,msg);
+}
+
+function whatsappForCustomer(customerId,message){
+ const c=customers.find(x=>x.id===customerId);
+ if(!c||!c.mobile){
+  toast("Customer mobile number not available");
+  return;
+ }
+
+ const mobile=normalizeMobile(c.mobile);
+ if(mobile.length<12){
+  toast("Enter valid mobile number");
+  return;
+ }
+
+ const text=message||"வணக்கம். LIC policy தொடர்பாக தொடர்பு கொள்கிறேன். நன்றி.";
+ const url="https://wa.me/"+mobile+"?text="+encodeURIComponent(text);
+ window.open(url,"_blank");
+}
+
+/* GLOBAL SEARCH */
+function globalSearch(){
+ const q=(document.getElementById("globalSearch").value||"").toLowerCase().trim();
+ const out=document.getElementById("globalResults");
+
+ if(!q){
+  out.innerHTML="";
+  return;
+ }
+
+ const cs=customers.filter(c=>
+  [c.name,c.mobile,c.city].join(" ").toLowerCase().includes(q)
+ );
+
+ const ps=policies.filter(p=>
+  [p.number,planName(p.plan),customerName(p.customerId),p.status]
+  .join(" ").toLowerCase().includes(q)
+ );
+
+ let html="";
+
+ if(cs.length){
+  html+=`<div class="card"><h3>👥 Customers</h3>`;
+  cs.forEach(c=>{
+   html+=`
+   <div style="padding:10px 0;border-bottom:1px solid var(--line)">
+    <b>${esc(c.name)}</b> — ${esc(c.mobile||"-")}
+    <button class="btn light" onclick="openCustomer('${c.id}')">Open</button>
+   </div>`;
+  });
+  html+="</div>";
+ }
+
+ if(ps.length){
+  html+=`<div class="card"><h3>📋 Policies</h3>`;
+  ps.forEach(p=>{
+   html+=`
+   <div style="padding:10px 0;border-bottom:1px solid var(--line)">
+    <b>${esc(p.number)}</b> — ${esc(customerName(p.customerId))}
+    <div class="subtitle">${esc(planName(p.plan))}</div>
+    <button class="btn light" onclick="openPolicy('${p.id}')">Open</button>
+   </div>`;
+  });
+  html+="</div>";
+ }
+
+ out.innerHTML=html||`<div class="card"><div class="empty">No results.</div></div>`;
+}
+
+/* BACKUP */
+function backupData(){
+ const data={
+  app:"MY LIC DOC",
+  version:"1.8 Professional",
+  exportedAt:new Date().toISOString(),
+  customers,
+  policies,
+  followups,
+  settings
+ };
+
+ downloadFile(
+  "MY_LIC_DOC_Backup_"+today()+".json",
+  JSON.stringify(data,null,2),
+  "application/json"
+ );
+
+ toast("Backup downloaded");
+}
+
+function restoreData(event){
+ const file=event.target.files[0];
+ if(!file)return;
+
+ const reader=new FileReader();
+
+ reader.onload=function(e){
+  try{
+   const data=JSON.parse(e.target.result);
+
+   if(!data||!Array.isArray(data.customers)||!Array.isArray(data.policies)){
+    throw new Error("Invalid backup");
+   }
+
+   if(!confirm("Restore backup and replace current data?"))return;
+
+   customers=data.customers||[];
+   policies=data.policies||[];
+   followups=data.followups||[];
+   settings=data.settings||settings;
+
+   save("lic_customers",customers);
+   save("lic_policies",policies);
+   save("lic_followups",followups);
+   save("lic_settings",settings);
+
+   refresh();
+   toast("Backup restored successfully");
+  }catch(err){
+   alert("Invalid backup file.");
+  }
+ };
+
+ reader.readAsText(file);
+}
+
+function downloadFile(filename,content,type){
+ const blob=new Blob([content],{type});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=filename;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+/* LATHAKARAN DATA */
+function csvCell(value){
+ return `"${String(value??"").replaceAll('"','""')}"`;
+}
+
+function downloadLathakaranData(){
+ let rows=[
+  [
+   "Customer Name",
+   "Mobile",
+   "City",
+   "Policy Number",
+   "Plan",
+   "Plan Number",
+   "Sum Assured",
+   "Premium",
+   "Mode",
+   "Renewal Date",
+   "Status"
+  ]
+ ];
+
+ policies.forEach(p=>{
+  const c=customers.find(x=>x.id===p.customerId)||{};
+  rows.push([
+   c.name||"",
+   c.mobile||"",
+   c.city||"",
+   p.number||"",
+   planName(p.plan),
+   p.plan||"",
+   p.sa||"",
+   p.premium||"",
+   p.mode||"",
+   p.renewal||"",
+   p.status||""
+  ]);
+ });
+
+ customers
+  .filter(c=>!policies.some(p=>p.customerId===c.id))
+  .forEach(c=>{
+   rows.push([
+    c.name||"",
+    c.mobile||"",
+    c.city||"",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "No Policy"
+   ]);
+  });
+
+ const csv="\uFEFF"+rows.map(r=>r.map(csvCell).join(",")).join("\n");
+
+ downloadFile(
+  "Lathakaran_Data_"+today()+".csv",
+  csv,
+  "text/csv;charset=utf-8"
+ );
+
+ toast("Lathakaran Data downloaded");
+}
+
+/* SETTINGS */
+function loadSettings(){
+ document.getElementById("setName").value=settings.name||"";
+ document.getElementById("setProfession").value=settings.profession||"";
+ document.getElementById("setLocation").value=settings.location||"";
+ document.getElementById("setMobile").value=settings.mobile||"";
+}
+
+function saveSettings(){
+ settings={
+  name:document.getElementById("setName").value.trim(),
+  profession:document.getElementById("setProfession").value.trim(),
+  location:document.getElementById("setLocation").value.trim(),
+  mobile:document.getElementById("setMobile").value.trim()
+ };
+
+ save("lic_settings",settings);
+
+ document.querySelector(".profile h2").textContent=settings.name;
+ document.querySelectorAll(".profile p")[0].textContent=settings.profession;
+ document.querySelectorAll(".profile p")[1].textContent=
+  "Professional Customer & Policy Management";
+
+ toast("Settings saved");
+}
+
+/* DELETE */
+function clearAllData(){
+ if(!confirm("WARNING: Delete ALL customers, policies and follow-ups?"))return;
+ if(!confirm("This cannot be undone unless you have a backup. Continue?"))return;
+
+ customers=[];
+ policies=[];
+ followups=[];
+
+ save("lic_customers",customers);
+ save("lic_policies",policies);
+ save("lic_followups",followups);
+
+ refresh();
+ toast("All data deleted");
+}
+
+/* MODAL */
+function closeModal(id){
+ document.getElementById(id).classList.remove("show");
+}
+
+document.querySelectorAll(".modal").forEach(m=>{
+ m.addEventListener("click",e=>{
+  if(e.target===m)m.classList.remove("show");
+ });
+});
+
+/* INITIALIZATION */
+buildMenu();
+createExtraPages();
+refresh();
+openPage("dashboard");
+
+/* SERVICE WORKER OPTIONAL PWA CACHE */
+if("serviceWorker" in navigator){
+ /*
+  A single HTML file can still run normally without a service worker.
+  No external libraries are required.
+ */
+}
+</script>
+
+</body>
+</html>
