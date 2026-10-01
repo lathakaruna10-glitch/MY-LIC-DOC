@@ -1,1 +1,1 @@
-# MY-LIC-DOC
+MY-LIC-DOC
