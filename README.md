@@ -1,1 +1,1 @@
-MY-LIC-DOCm
+MY-LIC-DOCM
